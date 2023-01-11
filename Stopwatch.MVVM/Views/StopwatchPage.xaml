@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:Stopwatch.ViewModels"
+             BindingContext="{x:Static vm:StopwatchViewModel.Instance}">
+
+    <StackLayout>
+        <Label Text="{Binding ElapsedTime}" 
+               FontSize="Large" 
+               HorizontalOptions="CenterAndExpand" />
+        <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+            <Button Text="{Binding ButtonStartText}" 
+                    Command="{Binding StartCommand}" />
+            <Button Text="{Binding ButtonLapText}" 
+                    Command="{Binding LapCommand}" />
+        </StackLayout>
+        <ListView ItemsSource="{Binding Laps}" 
+                  HasUnevenRows="True">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Padding="10">
+                            <Label Text="{Binding LapTime}" 
+                                   FontSize="Medium" />
+                            <Label Text="Lap: {Binding LapNumber}" 
+                                   FontSize="Small" />
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+</StackLayout>
+</ContentPage>
